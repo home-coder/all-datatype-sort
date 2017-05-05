@@ -64,24 +64,23 @@ static void sort_str(char **strarr, int len)
 	printf("\n");
 }
 
-static void sort_char(char **single, char **sort_single)
+static void sort_char(char *single, char *sort_single)
 {
 	int i = 0, j;
-	int len = strlen(*single);
+	int len = strlen(single);
+	printf("---%d\n", len);
 	char tmp;
-	*sort_single = (char *)malloc(sizeof(char) * (len + 1));	
-	printf("%d\n", len);
 	for (; i < len - 1; i++) {
-		for (j = i + 1; j < len-i-1; j++) {
-			if (*single[i] > *single[j]) {
-				*sort_single[i] = *single[j];
+		for (j = i + 1; j < len + 1; j++) {
+			if (single[i] > single[j]) {
+				sort_single[i] = single[j];
 			} else {
-				*sort_single[i] = *single[i];
+				sort_single[i] = single[i];
 			}
 		}
 	}
-	*sort_single[len] = '\0';
-	printf("%s \n", *sort_single);
+	sort_single[len + 1] = '\0';
+	printf("sort single:%s \n", sort_single);
 }
 
 int main()
@@ -102,17 +101,13 @@ int main()
 		printf("%c ", no[i]);
 	}
 	printf("\n");
-//字符数组  2, 指向字符串常量
+//字符数组  2, 指向字符串常量....这里面single指向字符串常量的首地址, 字符串常量本身在别处,在常量区
 	char *single = "jfdlsjflkdsa";
-	char *sort_single;
-	char *psingle = single;	
-	printf("--%d\n", (int)strlen(single));
-	printf("--%d\n", (int)strlen(psingle));
+	char *sort_single = malloc(sizeof(char) * (strlen(single) + 1));
 
-	sort_char(&single, &sort_single);
-	printf("%s\n", sort_single);
+	sort_char(single, sort_single);
 
-//模拟字符串 数组	
+//模拟字符串 数组, ....这里面的字符串仅仅是将自己的地址存到这个指针数组里，他们本身在别处。s 指向"hellowfdsa"的地址	
 	char *s[] = {
 		"hellowjfld",
 		"jfdlksjaf",
