@@ -22,6 +22,27 @@ static void sort_intarr(int *arr, int len)
 	printf("\n");
 }
 
+static void sort_ch(char *pno, int len)
+{
+	int i = 0, j;
+	char tmp;
+
+	for (; i < len - 1; i++) {
+		for (j = i + 1; j < len; j++) {
+			if (pno[i] > pno[j]) {
+				tmp = pno[i];
+				pno[i] = pno[j];
+				pno[j] = tmp;
+			}
+		}
+	}
+
+	for (i = 0; i < len; i++) {
+		printf("%c ", pno[i]);
+	}
+	printf("\n");
+}
+
 static void sort_str(char **strarr, int len)
 {
 	int i = 0, j;
@@ -65,6 +86,7 @@ static void sort_char(char **single, char **sort_single)
 
 int main()
 {
+//整型数组
 	int a[] = {1, 3, 5, 2, 6, 8, 4}, i;
 	int len = sizeof(a)/sizeof(a[0]);
 	sort_intarr(a, len);
@@ -72,7 +94,25 @@ int main()
 		printf("%d ", a[i]);
 	}
 	printf("\n");
+//字符型数组 1	
+	char no[] = {'a', 'd', 'b', 't'};
+	int nolen = sizeof(no)/sizeof(no[0]);
+	sort_ch(no, nolen);
+	for (i = 0; i < nolen; i++) {
+		printf("%c ", no[i]);
+	}
+	printf("\n");
+//字符数组  2, 指向字符串常量
+	char *single = "jfdlsjflkdsa";
+	char *sort_single;
+	char *psingle = single;	
+	printf("--%d\n", (int)strlen(single));
+	printf("--%d\n", (int)strlen(psingle));
 
+	sort_char(&single, &sort_single);
+	printf("%s\n", sort_single);
+
+//模拟字符串 数组	
 	char *s[] = {
 		"hellowjfld",
 		"jfdlksjaf",
@@ -86,10 +126,6 @@ int main()
 	}
 	printf("\n");
 
-	char *single = "jfdlsjflkdsa";
-	char *sort_single;
-	sort_char(&single, &sort_single);
-	printf("%s\n", sort_single);
 
 	return 0;
 }
