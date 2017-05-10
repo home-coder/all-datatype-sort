@@ -83,6 +83,14 @@ static void sort_char(char *single, char *sort_single)
 	printf("sort single:%s \n", sort_single);
 }
 
+static void sort_str2(char **s)
+{
+	for (; *s != NULL; s++) {
+		printf("%s ", *s);
+	}
+	printf("\n");
+}
+
 int main()
 {
 //整型数组
@@ -107,7 +115,7 @@ int main()
 
 	sort_char(single, sort_single);
 
-//模拟字符串 数组, ....这里面的字符串仅仅是将自己的地址存到这个指针数组里，他们本身在别处。s 指向"hellowfdsa"的地址	
+//3.1 模拟字符串 数组, ....这里面的字符串仅仅是将自己的地址存到这个指针数组里，他们本身在别处。s 指向"hellowfdsa"的地址
 	char *s[] = {
 		"hellowjfld",
 		"jfdlksjaf",
@@ -121,6 +129,22 @@ int main()
 	}
 	printf("\n");
 
+// 3.2  针对3.1排序必须有len，但是遍历就可以通过NULL来优化
+	{
+		char *s[] = {
+			"hellowjlfd",
+			"fjldsa",
+			"oewafjldsl",
+			NULL
+		};
+
+		char **ps = s;
+		sort_str2(ps);
+		for (i = 0; i < len; i++) {
+			printf("%s ", ps[i]);
+		}
+	printf("\n");
+	}
 
 	return 0;
 }
