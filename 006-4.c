@@ -91,6 +91,22 @@ static void sort_str2(char **s)
 	printf("\n");
 }
 
+static void sort_char2(char *src, char **dst)
+{
+	int i, j;
+	int len = strlen(src);
+	*dst = (char *)malloc(sizeof(char) * (len + 1));
+	for (i = 0; i < len; i++) {
+		for (j = i; j < len - i; j++) {
+			if (src[j] < src[j+1]) {
+				*dst[i] = src[j];
+			} else {
+
+			}
+		}
+	}
+}
+
 int main()
 {
 //整型数组
@@ -109,11 +125,18 @@ int main()
 		printf("%c ", no[i]);
 	}
 	printf("\n");
-//字符数组  2, 指向字符串常量....这里面single指向字符串常量的首地址, 字符串常量本身在别处,在常量区
+//2.1 字符数组  2, 指向字符串常量....这里面single指向字符串常量的首地址, 字符串常量本身在别处,在常量区
 	char *single = "jfdlsjflkdsa";
 	char *sort_single = malloc(sizeof(char) * (strlen(single) + 1));
 
 	sort_char(single, sort_single);
+
+//2.2 满足项目README中的需求，将内存申请放到函数内部
+	{
+		char *src = "fjdlswiae";
+		char *dst;
+		sort_char2(src, &dst);
+	}
 
 //3.1 模拟字符串 数组, ....这里面的字符串仅仅是将自己的地址存到这个指针数组里，他们本身在别处。s 指向"hellowfdsa"的地址
 	char *s[] = {
