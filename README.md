@@ -5,5 +5,7 @@
 
 他们玩游戏，5 . 5 日 是5 5开黑的日子
 
-3.更新char *sort_single = malloc(sizeof(char) * (strlen(single) + 1));
+3.更新char \*sort_single = malloc(sizeof(char) * (strlen(single) + 1));
 将这个申请内存的操作放到 排序方法里面。注意内存的申请方法
+
+#更新心情： c语言写的太少了，这些年经验而没有写多少代码，现在返回来做基础就要多花时间了
