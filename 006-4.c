@@ -95,16 +95,22 @@ static void sort_char2(char *src, char **dst)
 {
 	int i, j;
 	int len = strlen(src);
+	char tmp;
 	*dst = (char *)malloc(sizeof(char) * (len + 1));
-	for (i = 0; i < len; i++) {
-		for (j = i; j < len - i; j++) {
-			if (src[j] < src[j+1]) {
-				*dst[i] = src[j];
-			} else {
+	memset(*dst, 0x0, len);
+	memcpy(*dst, src, len);
 
+	for (i = 0; i < len - 1; i++) {
+		for (j = i + 1; j < len; j++) {
+			if ((*dst)[i] > (*dst)[j]) {
+				tmp = (*dst)[i];
+				(*dst)[i] = (*dst)[j];
+				(*dst)[j] = tmp;
 			}
 		}
 	}
+
+	printf("sort_char2 %s\n", *dst);
 }
 
 int main()
@@ -131,11 +137,12 @@ int main()
 
 	sort_char(single, sort_single);
 
-//2.2 满足项目README中的需求，将内存申请放到函数内部
+//2.2 满足项目README中的需求，将内存申请放到调用的函数内部
 	{
 		char *src = "fjdlswiae";
 		char *dst;
 		sort_char2(src, &dst);
+		printf("func over: %s\n", dst);
 	}
 
 //3.1 模拟字符串 数组, ....这里面的字符串仅仅是将自己的地址存到这个指针数组里，他们本身在别处。s 指向"hellowfdsa"的地址
