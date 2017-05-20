@@ -175,6 +175,7 @@ int main()
 		}
 	printf("\n");
 	}
+//4.0 特定的初始化-->README.md
 
 	return 0;
 }
